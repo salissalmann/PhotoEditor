@@ -36,6 +36,7 @@ function uploadImage()
 
 function downloadpicture(filename)
 {
+    previewImg = document.querySelector(".preview-img img")
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = previewImg.naturalWidth;
@@ -43,10 +44,10 @@ function downloadpicture(filename)
     
     ctx.filter = `brightness(${Brightness}%) saturate(${Saturation}%) invert(${Inversion}%) grayscale(${Grayscale}%)`;
     ctx.translate(canvas.width / 2, canvas.height / 2);
-    if(rotate !== 0) {
-        ctx.rotate(rotate * Math.PI / 180);
+    if(rotatevalue !== 0) {
+        ctx.rotate(rotatevalue * Math.PI / 180);
     }
-    ctx.scale(flipHorizontal, flipVertical);
+    ctx.scale(scaleX, scaleY);
     ctx.drawImage(previewImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
     
     const link = document.createElement("a");
